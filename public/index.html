@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script type = text/javascript>
+  function success(pos) {
+ var crd = pos.coords;
+ //variables
+var a1 = 'Your current position is:'
+var a2 = `Latitude : ${crd.latitude}`
+var a3 = `Longitude: ${crd.longitude}`
+var a4 = `More or less ${crd.accuracy} meters.`
+//code
+console.log(a1);
+console.log(a2);
+console.log(a3);
+console.log(a4);
+const data = {a2, a3};
+const options = {method: "POST", 
+body: JSON.stringify(data), headers: {
+      'Content-Type': 'application/json'
+    }}
+;
+fetch("/api",options).then(response => {console.log(response);
+})
+};
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+
+navigator.geolocation.getCurrentPosition(success, error);
+
+
+
+  </script>
+  <p>HELLO!</p>  
+</body>
+</html>
